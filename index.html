@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        body {
+            display: flex; 
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .sandhya {
+            text-align: center;
+            background-color: lightblue;
+            padding: 50px;
+            border-radius: 30px;
+        }
+        h1 {
+            margin-bottom: 30px;
+        }
+        .icon i, .icon span {
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sandhya">
+        <h1>NETWORK STATUS</h1>
+        <p id="sandy">Checking Network Status</p>
+        <div class="icon">
+            <i class="fa-solid fa-wifi"></i>
+            <span class="material-symbols-outlined" style="display: none;">wifi_off</span>
+        </div>
+    </div>
+    <script>
+        function NetworkStatus() {
+            const statusText = document.getElementById('sandy');
+            const wifiIcon = document.querySelector('.fa-wifi');
+            const wifiOffIcon = document.querySelector('.material-symbols-outlined');
+
+            if (navigator.onLine) {
+                statusText.textContent = 'You are online';
+                statusText.classList.remove('offline');
+                statusText.classList.add('online');
+                wifiIcon.style.display = 'inline';
+                wifiOffIcon.style.display = 'none';
+            } else {
+                statusText.textContent = 'You are offline';
+                statusText.classList.add('offline');
+                statusText.classList.remove('online');
+                wifiIcon.style.display = 'none';
+                wifiOffIcon.style.display = 'inline';
+            }
+        }
+
+        NetworkStatus();
+        window.addEventListener('online', NetworkStatus);
+        window.addEventListener('offline', NetworkStatus);
+    </script>
+</body>
+</html>
